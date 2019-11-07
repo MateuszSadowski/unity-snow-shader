@@ -19,6 +19,7 @@
         LOD 200
 
         CGPROGRAM
+        #include "Helper.cginc"
         // Physically based Standard lighting model, and enable shadows on all light types
         #pragma surface surf Standard fullforwardshadows
 
@@ -59,12 +60,14 @@
             float slopeMin = _Slope - _SlopeFalloff;
             float slopeMax = _Slope + _SlopeFalloff;
             fixed3 verticalDirection = fixed3(0.0, 1.0, 0.0);
+            float height = IN.worldPos.y;
 
-            float h = clamp((IN.worldPos.y - heightMin) / (heightMax - heightMin), 0.0, 1.0);
+            float heightStep = getClampedInterpolationStep(_Height, _HeightFalloff, height);
+
             float slope = dot(normalize(IN.worldNormal.xyz), verticalDirection);
-            float slopeStep = clamp((slope - slopeMin) / (slopeMax - slopeMin), 0.0, 1.0);
-            float step = clamp(h * slopeStep, 0.0, 1.0);
+            float slopeStep = getClampedInterpolationStep(_Slope, _SlopeFalloff, slope);
 
+            float step = clamp(heightStep * slopeStep, 0.0, 1.0);
             fixed4 c = lerp(tex2D(_MainTex, IN.uv_MainTex) * _Color, tex2D(_OverlayTex, IN.uv_OverlayTex) * _OverlayColor, step);
 
             o.Albedo = c.rgb;
