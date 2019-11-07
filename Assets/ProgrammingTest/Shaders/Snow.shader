@@ -8,10 +8,10 @@
         _OverlayColor ("Overlay Color", Color) = (1,1,1,1)
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        _Height ("Height", Range(0, 100)) = 10
-        _HeightFalloff ("Height Falloff", Range(0, 2)) = 1
+        _Height ("Height", Range(0, 250)) = 50
+        _HeightFalloff ("Height Falloff", Range(0, 20)) = 5
         _Slope ("Slope", Range(0, 1)) = 0.7
-        _SlopeFalloff ("Slope Falloff", Range(0, 2)) = 1
+        _SlopeFalloff ("Slope Falloff", Range(0, 0.5)) = 0.1
     }
     SubShader
     {
