@@ -55,10 +55,6 @@
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float heightMin = _Height - _HeightFalloff;
-            float heightMax = _Height + _HeightFalloff;
-            float slopeMin = _Slope - _SlopeFalloff;
-            float slopeMax = _Slope + _SlopeFalloff;
             fixed3 verticalDirection = fixed3(0.0, 1.0, 0.0);
             float height = IN.worldPos.y;
 
